@@ -68,6 +68,8 @@ app.use('/api/webhooks', require('./routes/webhook'));
 
 app.use('/api/webhooks/github', require('./routes/githubWebhook'));
 
+app.use('/api/backup', require('./routes/backup'));
+
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
