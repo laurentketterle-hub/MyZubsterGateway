@@ -1,11 +1,17 @@
 [build]
-  command = "cd frontend && npm install && npm run build"
-  publish = "frontend/dist"
+  command = "echo 'Skipping frontend build for now'"
+  publish = "."
 
 [build.environment]
   NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/"
   status = 200
+
+# Deploy retrigger: 2026-08-05 22:56:33
+
+# Deploy retrigger: 2026-08-05 23:10:36
+
+# Deploy retrigger: 2026-08-06 05:07:31
