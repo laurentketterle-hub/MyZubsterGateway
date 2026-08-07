@@ -2,7 +2,11 @@ const express = require('express');
 const { exec } = require('child_process');
 const app = express();
 const PORT = 5000;
-const SECRET = process.env.CONTROL_API_SECRET || 'change-me-in-production';
+const SECRET = process.env.CONTROL_API_SECRET;
+if (!SECRET) {
+  console.error('FATAL: CONTRO_API_SECRET environment variable is required');
+  process.exit(1);
+}
 
 app.use(express.json());
 
@@ -120,5 +124,5 @@ app.post('/api/update', auth, (req, res) => {
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🛠️ Control API avviata su http://0.0.0.0:${PORT}`);
-  console.log(`🔑 API Key: ${SECRET}`);
+  console.log(`🔑 API Key: ${SECRET.substring(0, 4)}...${SECRET.substring(SECRET.length - 4)}`);
 });
