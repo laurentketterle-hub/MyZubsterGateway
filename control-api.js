@@ -2,7 +2,11 @@ const express = require("express");
 const { exec } = require("child_process");
 const app = express();
 const PORT = 5000;
-const SECRET = process.env.CONTROL_API_SECRET || "myzubster_control_2026";
+const SECRET = process.env.CONTROL_API_SECRET;
+if (!SECRET) {
+  console.error("FATAL: CONTRO_API_SECRET environment variable is required");
+  process.exit(1);
+}
 
 app.use(express.json());
 
